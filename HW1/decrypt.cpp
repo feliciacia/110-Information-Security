@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
 	}
 	else if (argv[2] == "row") {
 		//getline(cin, input);
-		cin >> keys;
+		//cin >> keys;
 		string key = argv[6];
 		for (int i = 0; i < key.length(); i++)keys[i] = key[i];
 		strcpy_s(temp, keys);
