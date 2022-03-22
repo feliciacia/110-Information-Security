@@ -100,37 +100,49 @@ char* PlayFairEncrypt(char* input, char* key)
 		}
 	}
 
-	char* Encrypt = input;
+	char* Encrypt = new char[strlen(input) + 1];
+	for (int i = 0; i < strlen(input) + 1; i++)
+	{
+		Encrypt[i] = '\0';
+	}
 	int EncryptPos = 0;
 	for (int i = 0; i < strlen(input); i++)
 	{
-		if (i + 1 >= strlen(input) && strlen(Encrypt) % 2 == 1)
+		if (i + 1 >= strlen(input) && EncryptPos % 2 == 1)
 		{
-			char* temp = (char*)malloc(sizeof(char) * (strlen(Encrypt) + 1));
-			for (int j = 0; j < strlen(Encrypt); j++)
+			char* temp = (char*)malloc(sizeof(char) * (EncryptPos + 2));
+			for (int j = 0; j < EncryptPos + 2; j++)
+			{
+				temp[j] = '\0';
+			}
+			for (int j = 0; j < EncryptPos; j++)
 			{
 				temp[j] = Encrypt[j];
 			}
-			temp[strlen(Encrypt)] = 'x';
+			temp[EncryptPos] = 'x';
 			Encrypt = temp;
-			EncryptPos = strlen(Encrypt);
+			EncryptPos++;
 			break;
 		}
 		if (input[i] == input[i + 1])
 		{
-			char* temp = (char*)malloc(sizeof(char) * (strlen(Encrypt) + 1));
+			char* temp = (char*)malloc(sizeof(char) * (EncryptPos + strlen(input) - i + 2));
+			for (int j = 0; j < EncryptPos + strlen(input) - i + 2; j++)
+			{
+				temp[j] = '\0';
+			}
 			int curPos = 0;
 			for (int j = 0; j < EncryptPos; j++, curPos++)
 			{
 				temp[curPos] = Encrypt[j];
 			}
-			temp[curPos] = Encrypt[EncryptPos];
+			temp[curPos] = input[i];
 			curPos++;
 			temp[curPos] = 'x';
 			curPos++;
-			for (int j = EncryptPos + 1; j < strlen(Encrypt); j++, curPos++)
+			for (int j = i + 1; j < EncryptPos + strlen(input) - i + 2; j++, curPos++)
 			{
-				temp[curPos] = Encrypt[j];
+				temp[curPos] = input[j];
 			}
 			Encrypt = temp;
 			EncryptPos += 2;
@@ -141,11 +153,25 @@ char* PlayFairEncrypt(char* input, char* key)
 			EncryptPos++;
 		}
 	}
-
-	char* EncryptResult = new char[EncryptPos];
-	for (int i = 0; i < EncryptPos; i++)
+	if (EncryptPos % 2 == 1)
 	{
-		EncryptResult[i] = '0';
+		char* temp = (char*)malloc(sizeof(char) * (EncryptPos + 2));
+		for (int j = 0; j < EncryptPos + 2; j++)
+		{
+			temp[j] = '\0';
+		}
+		for (int j = 0; j < strlen(Encrypt); j++)
+		{
+			temp[j] = Encrypt[j];
+		}
+		temp[EncryptPos] = 'x';
+		Encrypt = temp;
+		EncryptPos++;
+	}
+	char* EncryptResult = new char[EncryptPos];
+	for (int i = 0; i < EncryptPos + 1; i++)
+	{
+		EncryptResult[i] = '\0';
 	}
 	for (int i = 0; i < EncryptPos; i += 2)
 	{
@@ -350,28 +376,45 @@ char* RowEncrypt(char* input, char* key)
 
 int main(int argc, char** argv)
 {
-	char* method = argv[2];
-	char* input = argv[4];
-	char* key = argv[6];
+	char* method = argv[1];
+	char* input = argv[1];
+	char* key = argv[1];
+	for (int i = 0; i < argc; i++)
+	{
+		if (strcmp(argv[i], "-m") == 0)
+		{
+			method = argv[i + 1];
+		}
+		if (strcmp(argv[i], "-i") == 0)
+		{
+			input = argv[i + 1];
+		}
+		if (strcmp(argv[i], "-k") == 0)
+		{
+			key = argv[i + 1];
+		}
+	}
 
-		if (strcmp(method, "caesar") == 0)
-		{
-			cout << CaesarEncrypt(input, key);
-		}
-		else if (strcmp(method, "playfair") == 0)
-		{
-			cout << PlayFairEncrypt(input, key);
-		}
-		else if (strcmp(method, "vernam") == 0)
-		{
-			cout << VernamEncrypt(input, key);
-		}
-		else if (strcmp(method, "railfence") == 0)
-		{
-			cout << RailFenceEncrypt(input, key);
-		}
-		else if (strcmp(method, "row") == 0)
-		{
-			cout << RowEncrypt(input, key);
-		}
+	if (strcmp(method, "caesar") == 0)
+	{
+		cout << CaesarEncrypt(input, key);
+	}
+	else if (strcmp(method, "playfair") == 0)
+	{
+		cout << PlayFairEncrypt(input, key);
+	}
+	else if (strcmp(method, "vernam") == 0)
+	{
+		cout << VernamEncrypt(input, key);
+	}
+	else if (strcmp(method, "railfence") == 0)
+	{
+		cout << RailFenceEncrypt(input, key);
+	}
+	else if (strcmp(method, "row") == 0)
+	{
+		cout << RowEncrypt(input, key);
+	}
+	cout << endl;
+	return 0;
 }
