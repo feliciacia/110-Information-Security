@@ -73,28 +73,28 @@ char* PlayFairEncrypt(char* input, char* key)
 			}
 		}
 	}
-	keyPos = 0;
-	for (int i = 0; i < 5 && keyPos < 26; i++)
+	int alphabetPos = 0;
+	for (int i = 0; i < 5 && alphabetPos < 26; i++)
 	{
-		for (int j = 0; j < 5 && keyPos < 26; j++)
+		for (int j = 0; j < 5 && alphabetPos < 26; j++)
 		{
 			if (table[i][j] != '0')
 			{
 				continue;
 			}
-			if (keyPos == 'j' - 'a')
+			if (alphabetPos == 'j' - 'a')
 			{
-				keyPos++;
+				alphabetPos++;
 			}
-			if (alphabet[keyPos])
+			if (alphabet[alphabetPos])
 			{
-				table[i][j] = keyPos + 'a';
-				alphabet[keyPos] = false;
-				keyPos++;
+				table[i][j] = alphabetPos + 'a';
+				alphabet[alphabetPos] = false;
+				alphabetPos++;
 			}
 			else
 			{
-				keyPos++;
+				alphabetPos++;
 				j--;
 			}
 		}
