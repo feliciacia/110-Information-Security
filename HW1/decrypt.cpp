@@ -1,4 +1,6 @@
 #include<iostream>
+#include <string.h>
+#include <stdlib.h>
 using namespace std;
 
 //for playfair
@@ -110,8 +112,9 @@ void makeArr(int col, int row) {
 
 //main program
 int main(int argc, char** argv) {
-	char* input = argv[4];
+	//char* input = argv[4];
 	if (argv[2] == "caesar") {
+		char* input = argv[4];
 		int key = atoi(argv[6]);
 		for (int i = 0; i < strlen(input); i++) {
 			input[i] = toupper(input[i]);
@@ -126,6 +129,7 @@ int main(int argc, char** argv) {
 		cout << input;
 	}
 	else if (argv[2] == "playfair") {
+		char* input = argv[4];
 		string answer;
 		string key = argv[6];
 		string tempKey, tempStr;
@@ -189,7 +193,7 @@ int main(int argc, char** argv) {
 				answer.push_back(matrix[row2][col1]);
 			}
 		}
-		cout << "Decrypt text: ";
+		//cout << "Decrypt text: ";
 		//ofstream output;
 		//output.open(outputFile);
 		for (int i = 0; i < answer.length(); i++) {
@@ -200,6 +204,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	else if (argv[2] == "vernam") {
+		char* input = argv[4];
 		char* key = argv[6];
 		int j = 0;
 		int mod = strlen(key);
@@ -247,6 +252,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	else if (argv[2] == "row") {
+		char* input = argv[4];
 		char* key = argv[6];
 		for (int i = 0; i < strlen(key); i++)keys[i] = key[i];
 		//strcpy(temp, keys);
