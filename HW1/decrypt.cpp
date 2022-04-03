@@ -249,7 +249,12 @@ int main(int argc, char** argv) {
 	else if (argv[2] == "row") {
 		char* key = argv[6];
 		for (int i = 0; i < strlen(key); i++)keys[i] = key[i];
-		strcpy(temp, keys);
+		//strcpy(temp, keys);
+		int i = 0;
+		for (i = 0; keys[i] != '\0'; i++) {
+			temp[i] = keys[i];
+		}
+		temp[i] = '\0';
 		int flag = 0;
 		int k = 0;
 		int rows = 0, cols = 0;
