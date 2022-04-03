@@ -258,7 +258,8 @@ int main(int argc, char** argv) {
 		int flag = 0;
 		int k = 0;
 		int rows = 0, cols = 0;
-		int i = 0, j = 0;
+		int j = 0;
+		i = 0;
 		for (i = 0;; i++) {
 			if (flag)break;
 			for (j = 0; key[j] != NULL; j++) {
