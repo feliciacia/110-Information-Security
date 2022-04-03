@@ -115,12 +115,18 @@ int main(int argc, char** argv) {
 	//char* input = argv[4];
 	if (argv[2] == "caesar") {
 		char* input = argv[4];
-		int key = atoi(argv[6]);
+		char* key = argv[6];
+		int shift = 0;
+		for (int i = 0; i < strlen(key); i++)
+		{
+			shift = shift * 10;
+			shift = shift + key[i] - '0';
+		}
 		for (int i = 0; i < strlen(input); i++) {
 			input[i] = toupper(input[i]);
 			if (input[i] >= 'A' && input[i] <= 'Z') {
 				char temp = input[i];
-				temp = temp - key;
+				temp = temp - shift;
 				if (temp < 'A')temp = temp + 'Z' - 'A' + 1;
 				input[i] = temp;
 			}
