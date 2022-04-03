@@ -113,7 +113,7 @@ void makeArr(int col, int row) {
 //main program
 int main(int argc, char** argv) {
 	//char* input = argv[4];
-	char* method = argv[2];
+	string method = argv[2];
 
 	for (int i = 0; i < argc; i++) {
 		if (strcmp(argv[i], "-m") == 0) {
