@@ -369,5 +369,6 @@ int main(int argc, char** argv) {
 			std::cout << answer[i];
 		}
 	}
+	std::cout << std::endl;
 	return 0;
 }
