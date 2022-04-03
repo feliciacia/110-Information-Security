@@ -113,9 +113,24 @@ void makeArr(int col, int row) {
 //main program
 int main(int argc, char** argv) {
 	//char* input = argv[4];
-	if (argv[2] == "caesar") {
+	char* method = argv[2];
+
+	for (int i = 0; i < argc; i++) {
+		if (strcmp(argv[i], "-m") == 0) {
+			method = argv[i + 1];
+		}
+	}
+	if (method == "caesar") {
 		char* input = argv[4];
 		char* key = argv[6];
+		for (int i = 0; i < argc; i++) {
+			if (strcmp(argv[i], "-i") == 0) {
+				input = argv[i + 1];
+			}
+			if (strcmp(argv[i], "-k") == 0) {
+				key = argv[i + 1];
+			}
+		}
 		int shift = 0;
 		for (int i = 0; i < strlen(key); i++)
 		{
@@ -132,12 +147,20 @@ int main(int argc, char** argv) {
 			}
 			else continue;
 		}
-		cout << input;
+		std::cout << input;
 	}
-	else if (argv[2] == "playfair") {
+	else if (method == "playfair") {
 		char* input = argv[4];
 		string answer;
-		string key = argv[6];
+		char* key = argv[6];
+		for (int i = 0; i < argc; i++) {
+			if (strcmp(argv[i], "-i") == 0) {
+				input = argv[i + 1];
+			}
+			if (strcmp(argv[i], "-k") == 0) {
+				key = argv[i + 1];
+			}
+		}
 		string tempKey, tempStr;
 		int keyLength = 0;
 		char matrix[5][5];
@@ -204,14 +227,22 @@ int main(int argc, char** argv) {
 		//output.open(outputFile);
 		for (int i = 0; i < answer.length(); i++) {
 			if (answer[i] != 'X') {
-				cout << answer[i];
+				std::cout << answer[i];
 			}
 			else continue;
 		}
 	}
-	else if (argv[2] == "vernam") {
+	else if (method == "vernam") {
 		char* input = argv[4];
 		char* key = argv[6];
+		for (int i = 0; i < argc; i++) {
+			if (strcmp(argv[i], "-i") == 0) {
+				input = argv[i + 1];
+			}
+			if (strcmp(argv[i], "-k") == 0) {
+				key = argv[i + 1];
+			}
+		}
 		int j = 0;
 		int mod = strlen(key);
 		for (int i = strlen(key); i < strlen(input); i++) {
@@ -221,11 +252,19 @@ int main(int argc, char** argv) {
 		for (int i = 0; i < strlen(input); i++) {
 			answer += (input[i] - key[i] + 26) % 26 + 'A';
 		}
-		cout << answer;
+		std::cout << answer;
 	}
-	else if (argv[2] == "railfence") {
+	else if (method == "railfence") {
 		char* input = argv[4];
 		char* keys = argv[6];
+		for (int i = 0; i < argc; i++) {
+			if (strcmp(argv[i], "-i") == 0) {
+				input = argv[i + 1];
+			}
+			if (strcmp(argv[i], "-k") == 0) {
+				keys = argv[i + 1];
+			}
+		}
 		int key = 0;
 		for (int i = 0; i < strlen(keys); i++)
 		{
@@ -259,14 +298,22 @@ int main(int argc, char** argv) {
 
 		for (int i = 0; i < strlen(input); i++) {
 			rail[row][col] = toupper(rail[row][col]);
-			cout << rail[row][col++];
+			std::cout << rail[row][col++];
 			if (row == 0 || row == key - 1)k *= (-1);
 			row += k;
 		}
 	}
-	else if (argv[2] == "row") {
+	else if (method == "row") {
 		char* input = argv[4];
 		char* key = argv[6];
+		for (int i = 0; i < argc; i++) {
+			if (strcmp(argv[i], "-i") == 0) {
+				input = argv[i + 1];
+			}
+			if (strcmp(argv[i], "-k") == 0) {
+				key = argv[i + 1];
+			}
+		}
 		for (int i = 0; i < strlen(key); i++)keys[i] = key[i];
 		//strcpy(temp, keys);
 		int i = 0;
@@ -319,7 +366,7 @@ int main(int argc, char** argv) {
 		answer[k] = '\0';
 		for (int i = 0; answer[i] != NULL; i++) {
 			answer[i] = toupper(answer[i]);
-			cout << answer[i];
+			std::cout << answer[i];
 		}
 	}
 	return 0;
