@@ -224,7 +224,14 @@ int main(int argc, char** argv) {
 		cout << answer;
 	}
 	else if (argv[2] == "railfence") {
-		int key = atoi(argv[6]);
+		char* input = argv[4];
+		char* keys = argv[6];
+		int key = 0;
+		for (int i = 0; i < strlen(keys); i++)
+		{
+			key = key * 10;
+			key = key + keys[i] - '0';
+		}
 		int inputLen = strlen(input);
 		char** rail = new char* [key];
 		for (int i = 0; i < key; i++)rail[i] = new char[inputLen];
