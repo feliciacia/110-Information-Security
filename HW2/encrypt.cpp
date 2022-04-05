@@ -103,6 +103,28 @@ int main(int argc, char** argv) {
 			key = argv[i + 1];
 		}
 	}
+	if (input.length() < 18) {
+		int inputLen = input.length() - 2;
+		string tempInput = "0x";
+		for (int i = 0; i < 16 - inputLen; i++) {
+			tempInput += '0';
+		}
+		for (int i = 0; i < inputLen; i++) {
+			tempInput += input[2 + i];
+		}
+		input = tempInput;
+	}
+	if (key.length() < 18) {
+		int keyLen = key.length() - 2;
+		string tempKey = "0x";
+		for (int i = 0; i < 16 - keyLen; i++) {
+			tempKey += '0';
+		}
+		for (int i = 0; i < keyLen; i++) {
+			tempKey += key[2 + i];
+		}
+		key = tempKey;
+	}
 	input = input.substr(2, 16);
 	key = key.substr(2, 16);
 	string inputBin = hextoBinary(input);
