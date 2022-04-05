@@ -94,6 +94,14 @@ int main(int argc, char** argv) {
 	//cin >> key;
 	input = argv[2];
 	key = argv[4];
+	for (int i = 0 ;i < argc; i++) {
+		if(strcmp(argv[i], "-i")) {
+			input = argv[i + 1];
+		}
+		if(strcmp(argv[i], "-k")) {
+			key = argv[i + 1];
+		}
+	}
 	input = input.substr(2, 16);
 	key = key.substr(2, 16);
 	string inputBin = hextoBinary(input);
