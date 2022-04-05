@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <string.h>
 using namespace std;
 
 string RightShift_1Bit(string key)
