@@ -451,11 +451,6 @@ int main(int argc, char** argv)
 
 	string DecryptResultHex = ConvertBintoHexa(DecryptResult);
 
-	while (DecryptResultHex[0] == '0')
-	{
-		DecryptResultHex = DecryptResultHex.substr(1, DecryptResultHex.length() - 1);
-	}
-
 	cout << "0x" << DecryptResultHex << endl;
 
 }
