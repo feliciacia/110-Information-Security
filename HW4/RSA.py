@@ -187,8 +187,8 @@ def decrypt_with_CRT(ciphertext, p, q, d):
 
 #main function
 if __name__ == "__main__":
-    p, q, N, phi, e, d = produce_key()
     if sys.argv[1] == "-i":
+        p, q, N, phi, e, d = produce_key()
         print("p = " + str(p))
         print("q = " + str(q))
         print("N = " + str(N))
