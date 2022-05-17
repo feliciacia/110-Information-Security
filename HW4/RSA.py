@@ -67,7 +67,7 @@ def square_and_multiply(base, power, n):
 
 
 #The Miller Rabin Test to check whether the given number is prime or not
-def miller_rabin_test(n, check = 50):
+def miller_rabin_test(n, check = 40):
     #if can be divided by 2, it is not prime, used to accelerate the search of prime
     if n%2 == 0:
         return False
